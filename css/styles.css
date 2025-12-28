@@ -301,17 +301,11 @@ input, textarea, select {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-inverse);
 }
 
 .logo-image {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
+  height: 60px;
+  width: auto;
 }
 
 .logo-highlight {
@@ -1028,24 +1022,13 @@ input, textarea, select {
 }
 
 .footer-logo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-inverse);
+  display: inline-block;
   margin-bottom: var(--spacing-md);
 }
 
 .footer-logo-image {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-}
-
-.footer-logo span {
-  color: var(--color-secondary);
+  height: 80px;
+  width: auto;
 }
 
 .footer-description {
