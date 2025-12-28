@@ -1,0 +1,43 @@
+{
+  "name": "Viagens Orlando - Sua Agência de Viagens",
+  "short_name": "Viagens Orlando",
+  "description": "Ingressos para parques Disney e Universal, hospedagem e aluguel de carros em Orlando. Atendimento personalizado e parcelamento em até 12x.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1e3a5f",
+  "theme_color": "#1e3a5f",
+  "orientation": "portrait-primary",
+  "scope": ".",
+  "lang": "pt-BR",
+  "categories": ["travel", "tourism", "entertainment"],
+  "icons": [
+    {
+      "src": "assets/icons/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Ingressos",
+      "short_name": "Ingressos",
+      "description": "Confira os ingressos disponíveis para parques",
+      "url": "#tickets"
+    },
+    {
+      "name": "Hospedagem",
+      "short_name": "Hotéis",
+      "description": "Veja opções de hospedagem em Orlando",
+      "url": "#hotels"
+    },
+    {
+      "name": "Contato",
+      "short_name": "Contato",
+      "description": "Entre em contato conosco",
+      "url": "#contact"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
