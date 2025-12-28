@@ -852,7 +852,7 @@ function init() {
   initAOS();
   initScrollAnimations();
   
-  console.log('Viagens Orlando App initialized');
+  console.log('Encanty Travel App initialized');
 }
 
 // Run on DOM ready
