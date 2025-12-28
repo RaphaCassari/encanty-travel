@@ -192,6 +192,22 @@ const blogData = [
 
 
 // ========================================
+// WhatsApp Configuration
+// ========================================
+
+const WHATSAPP_NUMBER = '5511983688641';
+
+function buildWhatsAppUrl(message) {
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+}
+
+function openWhatsApp(message) {
+  const url = buildWhatsAppUrl(message);
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// ========================================
 // DOM Elements
 // ========================================
 
@@ -530,6 +546,10 @@ function openTicketModal(ticketId) {
   if (!ticket) return;
   
   const { modalBody } = DOM;
+  const whatsappMessage = `Olá! Tenho interesse em ingressos para o *${ticket.parkName}*.\n\n` +
+    `📍 Categoria: ${ticket.category.toUpperCase()}\n` +
+    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price)}\n\n` +
+    `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
   
   modalBody.innerHTML = `
     <div class="modal-ticket">
@@ -544,10 +564,17 @@ function openTicketModal(ticketId) {
         <p class="ticket-card-price" style="font-size:var(--font-size-2xl);">
           ${ticket.priceFrom ? '<span style="font-size:var(--font-size-sm);">a partir de </span>' : ''}${formatPrice(ticket.price)}
         </p>
-        <a href="#contact" class="btn btn-primary" onclick="closeModal()">Comprar Agora</a>
+        <button class="btn btn-primary" data-ticket-id="${ticket.id}">
+          <i class="fab fa-whatsapp"></i> Comprar Agora
+        </button>
       </div>
     </div>
   `;
+  
+  modalBody.querySelector('[data-ticket-id]').addEventListener('click', () => {
+    openWhatsApp(whatsappMessage);
+    closeModal();
+  });
   
   openModal();
 }
@@ -560,6 +587,13 @@ function openHotelModal(hotelId) {
   const amenitiesList = hotel.amenities
     .map(a => `<li style="padding:var(--spacing-xs) 0;"><i class="fas fa-check" style="color:var(--color-success);margin-right:var(--spacing-sm);"></i>${a}</li>`)
     .join('');
+  
+  const whatsappMessage = `Olá! Tenho interesse em hospedagem no *${hotel.name}*.\n\n` +
+    `📍 Localização: ${hotel.location}\n` +
+    `🏨 Tipo: ${hotel.type}\n` +
+    `💰 Diária: ${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}\n` +
+    `✨ Comodidades: ${hotel.amenities.join(', ')}\n\n` +
+    `Gostaria de mais informações sobre disponibilidade e reservas.`;
   
   modalBody.innerHTML = `
     <div class="modal-hotel">
@@ -579,10 +613,17 @@ function openHotelModal(hotelId) {
             ${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}
           </p>
         </div>
-        <a href="#contact" class="btn btn-primary" onclick="closeModal()">Solicitar Reserva</a>
+        <button class="btn btn-primary" data-hotel-id="${hotel.id}">
+          <i class="fab fa-whatsapp"></i> Solicitar Reserva
+        </button>
       </div>
     </div>
   `;
+  
+  modalBody.querySelector('[data-hotel-id]').addEventListener('click', () => {
+    openWhatsApp(whatsappMessage);
+    closeModal();
+  });
   
   openModal();
 }
@@ -834,6 +875,21 @@ function initScrollAnimations() {
 // Initialize Application
 // ========================================
 
+function initCarQuote() {
+  const carQuoteBtn = document.getElementById('car-quote-btn');
+  
+  carQuoteBtn?.addEventListener('click', () => {
+    const message = `Olá! Gostaria de solicitar uma *cotação de aluguel de carro* na Flórida.\n\n` +
+      `🚗 Estou interessado em:\n` +
+      `• Sem taxas escondidas\n` +
+      `• Suporte em português 24h\n` +
+      `• Melhor preço garantido\n\n` +
+      `Por favor, me envie mais informações sobre disponibilidade e valores.`;
+    
+    openWhatsApp(message);
+  });
+}
+
 function init() {
   // Render content
   renderTickets();
@@ -851,6 +907,7 @@ function init() {
   initPWA();
   initAOS();
   initScrollAnimations();
+  initCarQuote();
   
   console.log('Encanty Travel App initialized');
 }
