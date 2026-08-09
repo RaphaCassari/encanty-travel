@@ -22,7 +22,7 @@ const ticketsData = [
     id: 'disney-hollywood',
     parkName: 'Hollywood Studios',
     category: 'disney',
-    image: 'https://images.unsplash.com/photo-1575993781584-a0c4e8a0e1a0?w=600',
+    image: 'https://images.unsplash.com/photo-1489368066883-369c64aa01bd?w=600',
     description: 'Viva a magia do cinema com Star Wars e Toy Story Land.',
     price: 589,
     priceFrom: true,
@@ -42,7 +42,7 @@ const ticketsData = [
     id: 'universal-studios',
     parkName: 'Universal Studios',
     category: 'universal',
-    image: 'https://images.unsplash.com/photo-1567030848903-eb6d0b5c8a8e?w=600',
+    image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
     description: 'Aventuras cinematográficas e o mundo de Harry Potter.',
     price: 549,
     priceFrom: true,
@@ -175,7 +175,7 @@ const blogData = [
   {
     id: 'b2',
     title: 'Novidades da Universal para 2025',
-    image: 'https://images.unsplash.com/photo-1567030848903-eb6d0b5c8a8e?w=600',
+    image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
     excerpt: 'Conheça as novas atrações e experiências que chegam aos parques Universal.',
     date: '15 Dez 2024',
     category: 'Novidades'
