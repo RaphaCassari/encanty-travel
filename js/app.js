@@ -32,7 +32,7 @@ const ticketsData = [
     id: 'disney-epcot',
     parkName: 'EPCOT',
     category: 'disney',
-    image: 'https://images.unsplash.com/photo-1568454537842-d933259bb258?w=600',
+    image: 'https://images.unsplash.com/photo-1673738930649-4e72ecfcf9f4?w=600',
     description: 'Explore o futuro e culturas do mundo todo.',
     price: 579,
     priceFrom: true,
@@ -56,7 +56,7 @@ const ticketsDataContinued = [
     id: 'universal-islands',
     parkName: 'Islands of Adventure',
     category: 'universal',
-    image: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600',
+    image: 'https://images.unsplash.com/photo-1544591518-5d1fdb9f5b6d?w=600',
     description: 'Ilhas temáticas com montanhas-russas incríveis.',
     price: 549,
     priceFrom: true,
@@ -66,7 +66,7 @@ const ticketsDataContinued = [
     id: 'seaworld',
     parkName: 'SeaWorld Orlando',
     category: 'seaworld',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600',
+    image: 'https://images.unsplash.com/photo-1721141877645-4404b8b241f8?w=600',
     description: 'Vida marinha, shows e montanhas-russas emocionantes.',
     price: 399,
     priceFrom: true,
@@ -76,7 +76,7 @@ const ticketsDataContinued = [
     id: 'busch-gardens',
     parkName: 'Busch Gardens',
     category: 'other',
-    image: 'https://images.unsplash.com/photo-1536768139911-e290a59011e4?w=600',
+    image: 'https://images.unsplash.com/photo-1706043904134-425b12ad8fd4?w=600',
     description: 'Parque temático africano com as melhores montanhas-russas.',
     price: 379,
     priceFrom: true,
@@ -359,9 +359,6 @@ function renderTicketCard(ticket) {
       <div class="ticket-card-content">
         <span class="ticket-card-category">${ticket.category}</span>
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
-        <p class="ticket-card-price">
-          ${ticket.priceFrom ? '<span>a partir de </span>' : ''}${formatPrice(ticket.price)}
-        </p>
       </div>
     </article>
   `;
@@ -385,7 +382,6 @@ function renderHotelCard(hotel) {
           <span class="hotel-card-type">${hotel.type}</span>
           <h3 class="hotel-card-name">${hotel.name}</h3>
           <p class="hotel-card-location"><i class="fas fa-map-marker-alt"></i>${hotel.location}</p>
-          <p class="hotel-card-price">${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}/noite</p>
         </div>
       </article>
     </div>
@@ -560,10 +556,7 @@ function openTicketModal(ticketId) {
       <ul style="margin-bottom:var(--spacing-lg);">
         ${ticket.features.map(f => `<li style="padding:var(--spacing-xs) 0;"><i class="fas fa-check" style="color:var(--color-success);margin-right:var(--spacing-sm);"></i>${f}</li>`).join('')}
       </ul>
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <p class="ticket-card-price" style="font-size:var(--font-size-2xl);">
-          ${ticket.priceFrom ? '<span style="font-size:var(--font-size-sm);">a partir de </span>' : ''}${formatPrice(ticket.price)}
-        </p>
+      <div style="display:flex;justify-content:flex-end;align-items:center;">
         <button class="btn btn-primary" data-ticket-id="${ticket.id}">
           <i class="fab fa-whatsapp"></i> Comprar Agora
         </button>
@@ -606,13 +599,7 @@ function openHotelModal(hotelId) {
       </p>
       <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-sm);">Comodidades</h3>
       <ul style="margin-bottom:var(--spacing-lg);">${amenitiesList}</ul>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--spacing-md);">
-        <div>
-          <p style="font-size:var(--font-size-sm);color:var(--color-text-muted);">Diária a partir de</p>
-          <p style="font-size:var(--font-size-2xl);font-weight:var(--font-weight-bold);color:var(--color-primary);">
-            ${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}
-          </p>
-        </div>
+      <div style="display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:var(--spacing-md);">
         <button class="btn btn-primary" data-hotel-id="${hotel.id}">
           <i class="fab fa-whatsapp"></i> Solicitar Reserva
         </button>
