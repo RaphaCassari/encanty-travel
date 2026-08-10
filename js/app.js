@@ -135,7 +135,7 @@ const testimonialsData = [
     photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
     rating: 5,
     text: 'Viagem dos sonhos! A equipe cuidou de tudo, desde os ingressos até as reservas. Super recomendo!',
-    date: 'Dezembro 2024'
+    date: 'Julho 2026'
   },
   {
     id: 't2',
@@ -143,7 +143,7 @@ const testimonialsData = [
     photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
     rating: 5,
     text: 'Atendimento excepcional! Conseguiram os melhores preços e o suporte durante a viagem foi incrível.',
-    date: 'Novembro 2024'
+    date: 'Junho 2026'
   },
   {
     id: 't3',
@@ -151,7 +151,7 @@ const testimonialsData = [
     photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
     rating: 5,
     text: 'Segunda vez que viajo com eles e não me arrependo. Tudo organizado e sem stress!',
-    date: 'Outubro 2024'
+    date: 'Maio 2026'
   },
   {
     id: 't4',
@@ -159,25 +159,25 @@ const testimonialsData = [
     photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
     rating: 4,
     text: 'Ótima experiência! O parcelamento facilitou muito. Voltarei a fazer negócio com certeza.',
-    date: 'Setembro 2024'
+    date: 'Abril 2026'
   }
 ];
 
 const blogData = [
   {
     id: 'b1',
-    title: 'Guia Completo: Magic Kingdom 2025',
+    title: 'Guia Completo: Magic Kingdom 2026',
     image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600',
     excerpt: 'Tudo que você precisa saber para aproveitar ao máximo o parque mais visitado do mundo.',
-    date: '20 Dez 2024',
+    date: '05 Ago 2026',
     category: 'Dicas'
   },
   {
     id: 'b2',
-    title: 'Novidades da Universal para 2025',
+    title: 'Novidades da Universal para 2026',
     image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
     excerpt: 'Conheça as novas atrações e experiências que chegam aos parques Universal.',
-    date: '15 Dez 2024',
+    date: '28 Jul 2026',
     category: 'Novidades'
   },
   {
@@ -185,7 +185,7 @@ const blogData = [
     title: 'Como Economizar em Orlando',
     image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600',
     excerpt: 'Dicas práticas para aproveitar sua viagem gastando menos sem perder a diversão.',
-    date: '10 Dez 2024',
+    date: '20 Jul 2026',
     category: 'Economia'
   }
 ];
@@ -895,7 +895,10 @@ function init() {
   initAOS();
   initScrollAnimations();
   initCarQuote();
-  
+
+  const footerYear = document.getElementById('footer-year');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
+
   console.log('Encanty Travel App initialized');
 }
 

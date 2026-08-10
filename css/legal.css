@@ -1,0 +1,135 @@
+/**
+ * Encanty Travel - Shared styles for institutional pages
+ * (Sobre, Termos, Privacidade, FAQ)
+ */
+
+.legal-header {
+  background: var(--color-primary-dark);
+  padding: var(--spacing-md) 0;
+}
+
+.legal-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legal-header .btn-outline {
+  color: var(--color-text-inverse);
+  border-color: var(--color-text-inverse);
+}
+
+.legal-header .btn-outline:hover {
+  background: var(--color-text-inverse);
+  color: var(--color-primary-dark);
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.legal-main {
+  padding: var(--spacing-xxl) 0;
+}
+
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-content {
+  margin-top: var(--spacing-lg);
+}
+
+.legal-content h2 {
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content p,
+.legal-content li {
+  color: var(--color-text-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-sm);
+}
+
+.legal-content ul {
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.legal-content a {
+  color: var(--color-secondary-dark);
+}
+
+.draft-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  color: #664d03;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.draft-notice i {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* FAQ accordion */
+.faq-item {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  background: none;
+  border: none;
+  text-align: left;
+  padding: var(--spacing-md) 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.faq-question i {
+  transition: transform var(--transition-fast);
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+}
+
+.faq-item.open .faq-answer {
+  max-height: 400px;
+}
+
+.faq-answer p {
+  padding-bottom: var(--spacing-md);
+}
