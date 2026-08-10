@@ -304,8 +304,7 @@ function initHeroAnimations() {
       .from('.hero-bg', { scale: 1.2, duration: 1.5 })
       .from('.hero-title', { y: 100, opacity: 0, duration: 1 }, '-=1')
       .from('.hero-subtitle', { y: 50, opacity: 0, duration: 0.8 }, '-=0.5')
-      .from('.hero-cta', { scale: 0, opacity: 0, duration: 0.5 }, '-=0.3')
-      .from('.hero-scroll-indicator', { y: -20, opacity: 0, duration: 0.5 });
+      .from('.hero-cta', { scale: 0, opacity: 0, duration: 0.5 }, '-=0.3');
     
     // Parallax effect on hero background
     gsap.to('.hero-bg', {
