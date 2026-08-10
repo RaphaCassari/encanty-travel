@@ -844,18 +844,6 @@ function initScrollAnimations() {
       });
     }
   });
-  
-  // Benefits bar stagger animation
-  gsap.from('.benefit-item', {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: '.benefits-bar',
-      start: 'top 80%'
-    }
-  });
 }
 
 // ========================================
