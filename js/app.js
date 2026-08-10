@@ -204,7 +204,14 @@ function buildWhatsAppUrl(message) {
 
 function openWhatsApp(message) {
   const url = buildWhatsAppUrl(message);
+  trackEvent('generate_lead', { method: 'whatsapp' });
   window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function trackEvent(eventName, params) {
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params);
+  }
 }
 
 // ========================================
@@ -742,6 +749,7 @@ function initNewsletter() {
     }
     
     // Success
+    trackEvent('sign_up', { method: 'newsletter' });
     showFeedback('Inscrição realizada com sucesso! 🎉', 'success');
     emailInput.classList.add('success');
     emailInput.value = '';
@@ -865,6 +873,26 @@ function initCarQuote() {
   });
 }
 
+function initAnalyticsTracking() {
+  document.querySelector('.whatsapp-float')?.addEventListener('click', () => {
+    trackEvent('generate_lead', { method: 'whatsapp_float' });
+  });
+
+  document.querySelectorAll('.contact-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const href = card.getAttribute('href') || '';
+      const method = href.startsWith('https://wa.me')
+        ? 'whatsapp'
+        : href.startsWith('mailto:')
+        ? 'email'
+        : href.startsWith('tel:')
+        ? 'phone'
+        : 'other';
+      trackEvent('generate_lead', { method });
+    });
+  });
+}
+
 function init() {
   // Render content
   renderTickets();
@@ -880,6 +908,7 @@ function init() {
   initSwipers();
   initNewsletter();
   initPWA();
+  initAnalyticsTracking();
   initAOS();
   initScrollAnimations();
   initCarQuote();
