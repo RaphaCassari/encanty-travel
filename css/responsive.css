@@ -204,10 +204,16 @@
   .nav-menu {
     position: static;
     width: auto;
+    max-width: none;
     height: auto;
     background: transparent;
     flex-direction: row;
+    flex-wrap: nowrap;
     padding: 0;
+  }
+
+  .nav-link {
+    white-space: nowrap;
   }
   
   .nav-toggle {
