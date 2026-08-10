@@ -7,6 +7,15 @@
    Base (Mobile First: 0-575px)
    ======================================== */
 
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  width: 52px;
+  height: 52px;
+  font-size: 28px;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+}
+
 /* Navigation Mobile */
 .nav-menu {
   position: fixed;
