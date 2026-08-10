@@ -325,6 +325,7 @@ input, textarea, select {
   color: var(--color-text-inverse);
   padding: var(--spacing-xs) 0;
   position: relative;
+  text-align: center;
 }
 
 .nav-link::after {
