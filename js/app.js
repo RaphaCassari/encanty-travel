@@ -166,27 +166,30 @@ const testimonialsData = [
 const blogData = [
   {
     id: 'b1',
-    title: 'Guia Completo: Magic Kingdom 2026',
+    title: 'Ingresso Disney Parcelado: Como Funciona e Vale a Pena?',
     image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600',
-    excerpt: 'Tudo que você precisa saber para aproveitar ao máximo o parque mais visitado do mundo.',
-    date: '05 Ago 2026',
-    category: 'Dicas'
+    excerpt: 'Entenda como funciona o parcelamento, se vale a pena e como economizar no ingresso.',
+    date: '10 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-ingresso-disney-parcelado.html'
   },
   {
     id: 'b2',
-    title: 'Novidades da Universal para 2026',
+    title: 'Universal ou Disney: Qual Escolher na Primeira Viagem?',
     image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
-    excerpt: 'Conheça as novas atrações e experiências que chegam aos parques Universal.',
-    date: '28 Jul 2026',
-    category: 'Novidades'
+    excerpt: 'Compare os parques e descubra o roteiro ideal para a sua família.',
+    date: '10 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-universal-ou-disney.html'
   },
   {
     id: 'b3',
-    title: 'Como Economizar em Orlando',
-    image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600',
-    excerpt: 'Dicas práticas para aproveitar sua viagem gastando menos sem perder a diversão.',
-    date: '20 Jul 2026',
-    category: 'Economia'
+    title: 'Aluguel de Carro em Orlando: Vale a Pena? Guia Completo',
+    image: 'https://images.unsplash.com/photo-1673019608185-2ceb412ade18?w=600',
+    excerpt: 'Prós, contras, seguro, pedágio e taxas escondidas antes de reservar.',
+    date: '10 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-aluguel-carro-orlando.html'
   }
 ];
 
@@ -422,15 +425,17 @@ function renderTestimonialCard(testimonial) {
 
 function renderBlogCard(post) {
   const srcset = generateSrcset(post.image);
-  
+  const tag = post.url ? 'a' : 'article';
+  const hrefAttr = post.url ? `href="${post.url}"` : '';
+
   return `
-    <article class="blog-card" data-aos="fade-up">
-      <img 
-        src="${post.image}" 
+    <${tag} class="blog-card" data-aos="fade-up" ${hrefAttr}>
+      <img
+        src="${post.image}"
         srcset="${srcset}"
         sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 33vw"
-        alt="${post.title}" 
-        class="blog-card-image" 
+        alt="${post.title}"
+        class="blog-card-image"
         loading="lazy"
       >
       <div class="blog-card-content">
@@ -439,7 +444,7 @@ function renderBlogCard(post) {
         <p class="blog-card-excerpt">${post.excerpt}</p>
         <p class="blog-card-meta"><i class="far fa-calendar"></i> ${post.date}</p>
       </div>
-    </article>
+    </${tag}>
   `;
 }
 

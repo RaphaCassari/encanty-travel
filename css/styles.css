@@ -826,11 +826,14 @@ input, textarea, select {
 }
 
 .blog-card {
+  display: block;
   background: var(--color-background);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
+  text-decoration: none;
+  color: inherit;
 }
 
 .blog-card:hover {

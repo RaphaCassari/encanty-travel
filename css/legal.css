@@ -133,3 +133,102 @@
 .faq-answer p {
   padding-bottom: var(--spacing-md);
 }
+
+/* Article (blog post) */
+.article-category {
+  display: inline-block;
+  background: var(--color-secondary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-sm);
+}
+
+.article-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.article-hero-image {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.legal-content h3 {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.article-cta {
+  background: var(--color-background-alt);
+  border-left: 4px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+}
+
+.article-cta p {
+  margin-bottom: var(--spacing-md);
+}
+
+.article-back-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-secondary-dark);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Blog index grid */
+.blog-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.blog-index-card {
+  display: block;
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.blog-index-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-index-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.blog-index-card-content {
+  padding: var(--spacing-md);
+}
+
+.blog-index-card-content h3 {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-sm) 0;
+}
+
+.blog-index-card-content p {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
