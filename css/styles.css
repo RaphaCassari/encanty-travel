@@ -277,12 +277,48 @@ input, textarea, select {
    ======================================== */
 .header {
   position: fixed;
-  top: 0;
+  top: 32px;
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
   background: transparent;
   transition: all var(--transition-normal);
+}
+
+/* ========================================
+   Exchange Rate Bar
+   ======================================== */
+.exchange-rate-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: var(--color-primary-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: calc(var(--z-fixed) + 1);
+  display: flex;
+  align-items: center;
+}
+
+.exchange-rate-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 var(--spacing-md);
+}
+
+.exchange-rate-content i {
+  color: var(--color-secondary);
+  flex-shrink: 0;
 }
 
 .header.scrolled {

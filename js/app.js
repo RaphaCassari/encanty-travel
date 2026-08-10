@@ -898,6 +898,34 @@ function initAnalyticsTracking() {
   });
 }
 
+const EXCHANGE_RATE_REFRESH_MS = 5 * 60 * 1000;
+
+function initExchangeRate() {
+  const textEl = document.getElementById('exchange-rate-text');
+  if (!textEl) return;
+
+  function formatBRL(value) {
+    return parseFloat(value).toFixed(2).replace('.', ',');
+  }
+
+  async function updateRate() {
+    try {
+      const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRLT');
+      if (!response.ok) throw new Error('Falha ao buscar cotação');
+      const data = await response.json();
+      const quote = data.USDBRLT;
+      const buy = formatBRL(quote.bid);
+      const sell = formatBRL(quote.ask);
+      textEl.textContent = `Dólar Turismo: Compra R$ ${buy} · Venda R$ ${sell}`;
+    } catch (error) {
+      textEl.textContent = 'Cotação do dólar turismo indisponível no momento';
+    }
+  }
+
+  updateRate();
+  setInterval(updateRate, EXCHANGE_RATE_REFRESH_MS);
+}
+
 function init() {
   // Render content
   renderTickets();
@@ -914,6 +942,7 @@ function init() {
   initNewsletter();
   initPWA();
   initAnalyticsTracking();
+  initExchangeRate();
   initAOS();
   initScrollAnimations();
   initCarQuote();

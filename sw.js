@@ -3,7 +3,7 @@
  * Implements caching strategies for offline functionality
  */
 
-const CACHE_NAME = 'viagens-orlando-v5';
+const CACHE_NAME = 'viagens-orlando-v6';
 const OFFLINE_URL = 'offline.html';
 
 const STATIC_ASSETS = [
@@ -74,6 +74,12 @@ self.addEventListener('fetch', (event) => {
   // Handle navigation requests
   if (request.mode === 'navigate') {
     event.respondWith(handleNavigationRequest(request));
+    return;
+  }
+
+  // Never cache the exchange rate quote — must always be live
+  if (isNoCacheResource(url)) {
+    event.respondWith(fetch(request));
     return;
   }
 
@@ -208,6 +214,13 @@ function isImageRequest(url) {
  */
 function isExternalResource(url) {
   return url.origin !== self.location.origin;
+}
+
+/**
+ * Check if request must never be cached (always fetched live)
+ */
+function isNoCacheResource(url) {
+  return url.hostname === 'economia.awesomeapi.com.br';
 }
 
 /**
