@@ -190,6 +190,15 @@ const blogData = [
     date: '10 Ago 2026',
     category: 'Dicas',
     url: 'blog-aluguel-carro-orlando.html'
+  },
+  {
+    id: 'b4',
+    title: 'Documentos para Viajar a Orlando: Guia para Brasileiros',
+    image: 'https://images.unsplash.com/photo-1454496406107-dc34337da8d6?w=600',
+    excerpt: 'Passaporte, visto americano e mais: o que você precisa antes de embarcar.',
+    date: '10 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-documentos-viagem-orlando.html'
   }
 ];
 
