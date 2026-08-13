@@ -199,6 +199,15 @@ const blogData = [
     date: '10 Ago 2026',
     category: 'Dicas',
     url: 'blog-documentos-viagem-orlando.html'
+  },
+  {
+    id: 'b5',
+    title: 'Melhores Comidas do Volcano Bay',
+    image: 'https://images.unsplash.com/photo-1750680229991-726754d4d58b?w=600',
+    excerpt: 'Sabores havaianos para fugir da comida tradicional de parque.',
+    date: '11 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-comidas-volcano-bay.html'
   }
 ];
 
