@@ -124,6 +124,22 @@ const hotelsData = [
     image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600',
     priceRange: { min: 200, max: 400 },
     amenities: ['Piscina privativa', 'Cozinha', '4 quartos']
+  },
+  {
+    id: 'hotel-4',
+    name: "Disney's Art of Animation Resort",
+    type: 'resort',
+    location: 'Walt Disney World',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Art_of_Animation_Pool.jpg/500px-Art_of_Animation_Pool.jpg',
+    amenities: ['Suítes temáticas em família', 'Piscina Finding Nemo', 'Transporte Disney']
+  },
+  {
+    id: 'hotel-5',
+    name: "Universal's Endless Summer Resort - Dockside Inn and Suites",
+    type: 'hotel',
+    location: 'Universal Orlando',
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Universal%27s_Endless_Summer_Resorts_panorama.png/500px-Universal%27s_Endless_Summer_Resorts_panorama.png",
+    amenities: ['2 piscinas', 'Early Park Admission', 'Praça de alimentação Pier 8']
   }
 ];
 
@@ -613,7 +629,7 @@ function openHotelModal(hotelId) {
   const whatsappMessage = `Olá! Tenho interesse em hospedagem no *${hotel.name}*.\n\n` +
     `📍 Localização: ${hotel.location}\n` +
     `🏨 Tipo: ${hotel.type}\n` +
-    `💰 Diária: ${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}\n` +
+    (hotel.priceRange ? `💰 Diária: ${formatPrice(hotel.priceRange.min)} - ${formatPrice(hotel.priceRange.max)}\n` : '') +
     `✨ Comodidades: ${hotel.amenities.join(', ')}\n\n` +
     `Gostaria de mais informações sobre disponibilidade e reservas.`;
   
