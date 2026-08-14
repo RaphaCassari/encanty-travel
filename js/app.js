@@ -9,12 +9,29 @@
 
 const ticketsData = [
   {
+    id: 'disney-4-park-magic',
+    parkName: '4-Park Magic Ticket',
+    category: 'disney',
+    image: 'https://images.unsplash.com/photo-1632754120060-5a14b0dd5ace?w=600',
+    description: 'Experimente 4 dias de magia e emoção nos parques temáticos do Walt Disney World: uma visita por dia a cada um dos 4 parques.',
+    price: 430,
+    currency: 'USD',
+    priceFrom: true,
+    features: [
+      'Magic Kingdom, EPCOT, Hollywood Studios e Animal Kingdom (1 dia em cada)',
+      'Não permite repetir parque no mesmo ingresso',
+      'Válido por 6 dias após a data do primeiro uso',
+      'Estacionamento não incluído'
+    ]
+  },
+  {
     id: 'disney-magic-kingdom',
     parkName: 'Magic Kingdom',
     category: 'disney',
     image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600',
     description: 'O parque mais mágico do mundo com o icônico Castelo da Cinderela.',
-    price: 599,
+    price: 200,
+    currency: 'USD',
     priceFrom: true,
     features: ['Acesso ao parque', 'Atrações clássicas', 'Shows e paradas']
   },
@@ -24,7 +41,8 @@ const ticketsData = [
     category: 'disney',
     image: 'https://images.unsplash.com/photo-1489368066883-369c64aa01bd?w=600',
     description: 'Viva a magia do cinema com Star Wars e Toy Story Land.',
-    price: 589,
+    price: 231.85,
+    currency: 'USD',
     priceFrom: true,
     features: ['Star Wars Galaxy Edge', 'Toy Story Land', 'Tower of Terror']
   },
@@ -34,9 +52,21 @@ const ticketsData = [
     category: 'disney',
     image: 'https://images.unsplash.com/photo-1673738930649-4e72ecfcf9f4?w=600',
     description: 'Explore o futuro e culturas do mundo todo.',
-    price: 579,
+    price: 214.85,
+    currency: 'USD',
     priceFrom: true,
     features: ['World Showcase', 'Future World', 'Guardians of the Galaxy']
+  },
+  {
+    id: 'disney-animal-kingdom',
+    parkName: 'Animal Kingdom',
+    category: 'disney',
+    image: 'https://images.unsplash.com/photo-1710097729746-10f49b6c0b3c?w=600',
+    description: 'Natureza, safári e a icônica Árvore da Vida em um parque temático único.',
+    price: 215,
+    currency: 'USD',
+    priceFrom: true,
+    features: ['Safári Kilimanjaro', 'Avatar Flight of Passage', 'Árvore da Vida']
   },
   {
     id: 'universal-studios',
@@ -44,9 +74,21 @@ const ticketsData = [
     category: 'universal',
     image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
     description: 'Aventuras cinematográficas e o mundo de Harry Potter.',
-    price: 549,
+    price: 164.99,
+    currency: 'USD',
     priceFrom: true,
     features: ['Wizarding World', 'Transformers', 'Minions']
+  },
+  {
+    id: 'universal-epic-universe',
+    parkName: 'Epic Universe',
+    category: 'universal',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Chronos_Tower_Front_Epic_Universe.jpg/500px-Chronos_Tower_Front_Epic_Universe.jpg',
+    description: 'O mais novo parque da Universal, com Super Nintendo World, Como Treinar o Seu Dragão e o novo mundo de Harry Potter.',
+    price: 164.99,
+    currency: 'USD',
+    priceFrom: true,
+    features: ['Super Nintendo World', 'How to Train Your Dragon - Isle of Berk', 'Harry Potter - Ministry of Magic', 'Dark Universe']
   }
 ];
 
@@ -58,7 +100,8 @@ const ticketsDataContinued = [
     category: 'universal',
     image: 'https://images.unsplash.com/photo-1544591518-5d1fdb9f5b6d?w=600',
     description: 'Ilhas temáticas com montanhas-russas incríveis.',
-    price: 549,
+    price: 164.99,
+    currency: 'USD',
     priceFrom: true,
     features: ['Hogwarts Express', 'Velocicoaster', 'Jurassic World']
   },
@@ -68,7 +111,8 @@ const ticketsDataContinued = [
     category: 'seaworld',
     image: 'https://images.unsplash.com/photo-1721141877645-4404b8b241f8?w=600',
     description: 'Vida marinha, shows e montanhas-russas emocionantes.',
-    price: 399,
+    price: 93.24,
+    currency: 'USD',
     priceFrom: true,
     features: ['Shows com animais', 'Mako', 'Kraken']
   },
@@ -78,7 +122,8 @@ const ticketsDataContinued = [
     category: 'other',
     image: 'https://images.unsplash.com/photo-1706043904134-425b12ad8fd4?w=600',
     description: 'Parque temático africano com as melhores montanhas-russas.',
-    price: 379,
+    price: 94.06,
+    currency: 'USD',
     priceFrom: true,
     features: ['SheiKra', 'Cheetah Hunt', 'Safari']
   },
@@ -88,7 +133,8 @@ const ticketsDataContinued = [
     category: 'other',
     image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600',
     description: 'Diversão para toda família no mundo LEGO.',
-    price: 349,
+    price: 97.22,
+    currency: 'USD',
     priceFrom: true,
     features: ['Miniland USA', 'LEGO Movie World', 'Water Park']
   }
@@ -376,8 +422,8 @@ function initHeroAnimations() {
 // Card Rendering Functions
 // ========================================
 
-function formatPrice(price) {
-  return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+function formatPrice(price, currency = 'BRL') {
+  return price.toLocaleString('pt-BR', { style: 'currency', currency });
 }
 
 function generateSrcset(baseUrl) {
@@ -402,6 +448,7 @@ function renderTicketCard(ticket) {
       <div class="ticket-card-content">
         <span class="ticket-card-category">${ticket.category}</span>
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
+        <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
       </div>
     </article>
   `;
@@ -589,7 +636,7 @@ function openTicketModal(ticketId) {
   const { modalBody } = DOM;
   const whatsappMessage = `Olá! Tenho interesse em ingressos para o *${ticket.parkName}*.\n\n` +
     `📍 Categoria: ${ticket.category.toUpperCase()}\n` +
-    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price)}\n\n` +
+    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price, ticket.currency || 'BRL')}${ticket.currency === 'USD' ? ' (sem taxas)' : ''}\n\n` +
     `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
   
   modalBody.innerHTML = `
