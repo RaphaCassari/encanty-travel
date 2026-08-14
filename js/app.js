@@ -427,7 +427,7 @@ function initHeroAnimations() {
       backDelay: 2000,
       loop: true,
       showCursor: true,
-      cursorChar: '|'
+      cursorChar: '✨'
     });
   }
 }
@@ -586,11 +586,19 @@ function renderTestimonials() {
   testimonialsWrapper.innerHTML = testimonialsData.map(renderTestimonialCard).join('');
 }
 
+const PT_MONTHS = { jan: 0, fev: 1, mar: 2, abr: 3, mai: 4, jun: 5, jul: 6, ago: 7, set: 8, out: 9, nov: 10, dez: 11 };
+
+function parseBlogDate(dateStr) {
+  const [day, monthAbbr, year] = dateStr.split(' ');
+  return new Date(Number(year), PT_MONTHS[monthAbbr.toLowerCase()], Number(day));
+}
+
 function renderBlog() {
   const { blogGrid } = DOM;
   if (!blogGrid) return;
-  
-  blogGrid.innerHTML = blogData.map(renderBlogCard).join('');
+
+  const sortedPosts = [...blogData].sort((a, b) => parseBlogDate(b.date) - parseBlogDate(a.date));
+  blogGrid.innerHTML = sortedPosts.map(renderBlogCard).join('');
 }
 
 
