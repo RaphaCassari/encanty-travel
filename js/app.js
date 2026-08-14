@@ -80,6 +80,22 @@ const ticketsData = [
     features: ['Wizarding World', 'Transformers', 'Minions']
   },
   {
+    id: 'universal-park-to-park-promo',
+    parkName: 'Park-to-Park + 2 Dias Grátis',
+    category: 'universal',
+    image: 'https://images.unsplash.com/photo-1754057174096-8724acf9e2d8?w=600',
+    description: 'Ingresso promocional 3 dias Park-to-Park: entrada no mesmo dia em Universal Studios Florida, Islands of Adventure e Epic Universe, com 2 dias extras grátis.',
+    price: 397.59,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Universal Studios Florida, Islands of Adventure e Epic Universe',
+      'Acesso Park-to-Park (troque de parque no mesmo dia)',
+      '3 dias pagos + 2 dias grátis'
+    ]
+  },
+  {
     id: 'universal-epic-universe',
     parkName: 'Epic Universe',
     category: 'universal',
@@ -309,8 +325,6 @@ const DOM = {
   hotelsWrapper: document.getElementById('hotels-wrapper'),
   testimonialsWrapper: document.getElementById('testimonials-wrapper'),
   blogGrid: document.getElementById('blog-grid'),
-  newsletterForm: document.getElementById('newsletter-form'),
-  formFeedback: document.getElementById('form-feedback'),
   modal: document.getElementById('modal'),
   modalBody: document.getElementById('modal-body'),
   pwaBanner: document.getElementById('pwa-banner'),
@@ -445,6 +459,7 @@ function renderTicketCard(ticket) {
         loading="lazy"
       >
       <div class="ticket-card-overlay"></div>
+      ${ticket.promo ? '<span class="ticket-card-promo">Promoção</span>' : ''}
       <div class="ticket-card-content">
         <span class="ticket-card-category">${ticket.category}</span>
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
@@ -796,64 +811,6 @@ function initSwipers() {
 }
 
 // ========================================
-// Newsletter Form
-// ========================================
-
-function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function initNewsletter() {
-  const { newsletterForm, formFeedback } = DOM;
-  if (!newsletterForm) return;
-  
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const emailInput = newsletterForm.querySelector('#newsletter-email');
-    const email = emailInput.value.trim();
-    
-    // Clear previous feedback
-    formFeedback.textContent = '';
-    formFeedback.className = 'form-feedback';
-    emailInput.classList.remove('error', 'success');
-    
-    if (!email) {
-      showFeedback('Por favor, informe seu email.', 'error');
-      emailInput.classList.add('error');
-      return;
-    }
-    
-    if (!validateEmail(email)) {
-      showFeedback('Por favor, informe um email válido.', 'error');
-      emailInput.classList.add('error');
-      emailInput.classList.add('shake');
-      setTimeout(() => emailInput.classList.remove('shake'), 500);
-      return;
-    }
-    
-    // Success
-    trackEvent('sign_up', { method: 'newsletter' });
-    showFeedback('Inscrição realizada com sucesso! 🎉', 'success');
-    emailInput.classList.add('success');
-    emailInput.value = '';
-    
-    setTimeout(() => {
-      emailInput.classList.remove('success');
-      formFeedback.textContent = '';
-    }, 5000);
-  });
-}
-
-function showFeedback(message, type) {
-  const { formFeedback } = DOM;
-  formFeedback.textContent = message;
-  formFeedback.className = `form-feedback ${type}`;
-}
-
-
-// ========================================
 // PWA Install Prompt
 // ========================================
 
@@ -1019,7 +976,6 @@ function init() {
   initFilters();
   initModal();
   initSwipers();
-  initNewsletter();
   initPWA();
   initAnalyticsTracking();
   initExchangeRate();

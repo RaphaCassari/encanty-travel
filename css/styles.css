@@ -644,6 +644,22 @@ input, textarea, select {
   background: linear-gradient(180deg, transparent 40%, rgba(30, 58, 95, 0.95) 100%);
 }
 
+.ticket-card-promo {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 2;
+  background: var(--color-error);
+  color: var(--color-text-inverse);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-md);
+}
+
 .ticket-card-content {
   position: absolute;
   bottom: 0;
@@ -960,50 +976,17 @@ input, textarea, select {
   margin-bottom: var(--spacing-lg);
 }
 
-.newsletter-form {
+.newsletter-embed {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+  justify-content: center;
 }
 
-.form-group {
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.form-input {
-  flex: 1;
-  padding: 1rem 1.25rem;
-  font-size: var(--font-size-base);
+.newsletter-embed iframe {
+  width: 100%;
+  max-width: 540px;
+  height: 480px;
   border: none;
   border-radius: var(--radius-md);
-  outline: none;
-  transition: box-shadow var(--transition-fast);
-}
-
-.form-input:focus {
-  box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.3);
-}
-
-.form-input.error {
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
-}
-
-.form-input.success {
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
-}
-
-.form-feedback {
-  font-size: var(--font-size-sm);
-  min-height: 1.5em;
-}
-
-.form-feedback.error {
-  color: #ff6b6b;
-}
-
-.form-feedback.success {
-  color: #69db7c;
 }
 
 /* ========================================

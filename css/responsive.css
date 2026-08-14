@@ -104,15 +104,6 @@
   justify-content: center;
 }
 
-/* Newsletter Mobile */
-.form-group {
-  flex-direction: column;
-}
-
-.form-group .btn {
-  width: 100%;
-}
-
 /* PWA Banner Mobile */
 .pwa-install-banner {
   flex-direction: column;
@@ -139,14 +130,6 @@
   
   .benefit-item {
     flex: 0 0 auto;
-  }
-  
-  .form-group {
-    flex-direction: row;
-  }
-  
-  .form-group .btn {
-    width: auto;
   }
   
   .pwa-install-banner {
