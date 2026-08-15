@@ -25,6 +25,85 @@ const ticketsData = [
     ]
   },
   {
+    id: 'disney-mnsshp',
+    parkName: "Mickey's Not So Scary Halloween Party",
+    category: 'disney',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Magic_Kingdom_Halloween_Oct_2019.jpg/500px-Magic_Kingdom_Halloween_Oct_2019.jpg',
+    description: 'Entre no Magic Kingdom a partir das 16h e aproveite a festa temática de Halloween, com fogos especiais, personagens Disney à noite e muitos doces. Evento recomendado para todas as idades.',
+    price: 151.39,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Acesso ao Magic Kingdom a partir das 16h',
+      'Festa de Halloween das 19h às 23h59',
+      'Fogos de artifício especiais e desfile temático',
+      'Datas selecionadas de agosto a outubro de 2026',
+      'Sujeito à disponibilidade, sem reembolso após a emissão'
+    ]
+  },
+  {
+    id: 'disney-mvmcp',
+    parkName: "Mickey's Very Merry Christmas Party",
+    category: 'disney',
+    image: 'https://images.unsplash.com/photo-1607245343572-e045934f85c9?w=600',
+    description: 'Caminhe pela Main Street, U.S.A. sob "neve", aprecie as decorações natalinas do Magic Kingdom e aproveite doces e bebidas festivas inclusos no ingresso, em noites selecionadas.',
+    price: 190.40,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Cenas de neve na Main Street, U.S.A.',
+      'Decoração sazonal: laços, guirlandas, azevinho e luzes pelo Parque',
+      'Pontos fotográficos temáticos de fim de ano',
+      'Doces e bebidas festivas inclusos, sem custo adicional',
+      'Noites selecionadas entre 8 de novembro e 21 de dezembro de 2026'
+    ]
+  },
+  {
+    id: 'universal-studios',
+    parkName: 'Universal Studios',
+    category: 'universal',
+    image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
+    description: 'Aventuras cinematográficas e o mundo de Harry Potter.',
+    price: 164.99,
+    currency: 'USD',
+    priceFrom: true,
+    features: ['Wizarding World', 'Transformers', 'Minions']
+  },
+  {
+    id: 'universal-park-to-park-promo',
+    parkName: 'Park-to-Park + 2 Dias Grátis',
+    category: 'universal',
+    image: 'https://images.unsplash.com/photo-1754057174096-8724acf9e2d8?w=600',
+    description: 'Ingresso promocional 3 dias Park-to-Park: entrada no mesmo dia em Universal Studios Florida, Islands of Adventure e Epic Universe, com 2 dias extras grátis.',
+    price: 397.59,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Universal Studios Florida, Islands of Adventure e Epic Universe',
+      'Acesso Park-to-Park (troque de parque no mesmo dia)',
+      '3 dias pagos + 2 dias grátis'
+    ]
+  },
+  {
+    id: 'universal-epic-universe',
+    parkName: 'Epic Universe',
+    category: 'universal',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Chronos_Tower_Front_Epic_Universe.jpg/500px-Chronos_Tower_Front_Epic_Universe.jpg',
+    description: 'O mais novo parque da Universal, com Super Nintendo World, Como Treinar o Seu Dragão e o novo mundo de Harry Potter.',
+    price: 164.99,
+    currency: 'USD',
+    priceFrom: true,
+    features: ['Super Nintendo World', 'How to Train Your Dragon - Isle of Berk', 'Harry Potter - Ministry of Magic', 'Dark Universe']
+  }
+];
+
+// Removidos temporariamente da vitrine (ainda salvos, só não aparecem no site).
+// Para reativar, mova o objeto de volta para dentro de ticketsData.
+const archivedTicketsData = [
+  {
     id: 'disney-magic-kingdom',
     parkName: 'Magic Kingdom',
     category: 'disney',
@@ -67,44 +146,6 @@ const ticketsData = [
     currency: 'USD',
     priceFrom: true,
     features: ['Safári Kilimanjaro', 'Avatar Flight of Passage', 'Árvore da Vida']
-  },
-  {
-    id: 'universal-studios',
-    parkName: 'Universal Studios',
-    category: 'universal',
-    image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
-    description: 'Aventuras cinematográficas e o mundo de Harry Potter.',
-    price: 164.99,
-    currency: 'USD',
-    priceFrom: true,
-    features: ['Wizarding World', 'Transformers', 'Minions']
-  },
-  {
-    id: 'universal-park-to-park-promo',
-    parkName: 'Park-to-Park + 2 Dias Grátis',
-    category: 'universal',
-    image: 'https://images.unsplash.com/photo-1754057174096-8724acf9e2d8?w=600',
-    description: 'Ingresso promocional 3 dias Park-to-Park: entrada no mesmo dia em Universal Studios Florida, Islands of Adventure e Epic Universe, com 2 dias extras grátis.',
-    price: 397.59,
-    currency: 'USD',
-    priceFrom: true,
-    promo: true,
-    features: [
-      'Universal Studios Florida, Islands of Adventure e Epic Universe',
-      'Acesso Park-to-Park (troque de parque no mesmo dia)',
-      '3 dias pagos + 2 dias grátis'
-    ]
-  },
-  {
-    id: 'universal-epic-universe',
-    parkName: 'Epic Universe',
-    category: 'universal',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Chronos_Tower_Front_Epic_Universe.jpg/500px-Chronos_Tower_Front_Epic_Universe.jpg',
-    description: 'O mais novo parque da Universal, com Super Nintendo World, Como Treinar o Seu Dragão e o novo mundo de Harry Potter.',
-    price: 164.99,
-    currency: 'USD',
-    priceFrom: true,
-    features: ['Super Nintendo World', 'How to Train Your Dragon - Isle of Berk', 'Harry Potter - Ministry of Magic', 'Dark Universe']
   }
 ];
 
