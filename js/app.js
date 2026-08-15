@@ -505,6 +505,7 @@ function renderTicketCard(ticket) {
         <span class="ticket-card-category">${ticket.category}</span>
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
         <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
+        <p class="ticket-card-price-note">Valores sem taxas</p>
       </div>
     </article>
   `;
