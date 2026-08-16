@@ -25,6 +25,23 @@ const ticketsData = [
     ]
   },
   {
+    id: 'disney-2-day-theme-base',
+    parkName: '2 Day Theme Base Ticket',
+    category: 'disney',
+    image: 'https://admin.suncoastusa.com.br//ImagesForWeb/Parques/Carrosel/Wdw2Dias/Wdw2dias2Parques_3.jpg',
+    description: 'Ingresso de 2 dias para 2 parques do Walt Disney World: uma visita por dia ao EPCOT e ao Disney’s Animal Kingdom, sujeito à disponibilidade de datas.',
+    price: 221.71,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Uma entrada por dia no EPCOT e no Disney’s Animal Kingdom',
+      'Não inclui o Magic Kingdom nem o Disney’s Hollywood Studios',
+      'Uso sujeito à janela de datas e disponibilidade',
+      'Ingresso não reembolsável e estacionamento não incluído'
+    ]
+  },
+  {
     id: 'disney-mnsshp',
     parkName: "Mickey's Not So Scary Halloween Party",
     category: 'disney',
