@@ -164,6 +164,34 @@
   color: var(--color-text-muted);
 }
 
+/* Certifications gallery */
+.certifications-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.certification-item {
+  width: 240px;
+  text-align: center;
+}
+
+.certification-item img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  background: #fff;
+}
+
+.certification-item figcaption {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
 /* Article (blog post) */
 .article-category {
   display: inline-block;

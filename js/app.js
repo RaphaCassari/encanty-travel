@@ -89,6 +89,23 @@ const ticketsData = [
     features: ['Wizarding World', 'Transformers', 'Minions']
   },
   {
+    id: 'universal-orlando-all-parks',
+    parkName: 'Universal Orlando All Parks Ticket',
+    category: 'universal',
+    image: 'https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7?w=600',
+    description: 'Acesso aos quatro parques do Universal Orlando durante 14 dias consecutivos, a partir da data selecionada.',
+    price: 517.34,
+    currency: 'USD',
+    priceFrom: false,
+    features: [
+      'Universal Studios Florida, Islands of Adventure, Epic Universe e Volcano Bay',
+      '14 dias consecutivos de uso, de 1 a 14 de setembro de 2026',
+      'Válido somente para o mesmo hóspede, com escaneamento biométrico na entrada',
+      'Não reembolsável, não transferível e sem aproveitamento de dias não utilizados',
+      'Não inclui eventos com ingresso separado, CityWalk, estacionamento ou descontos'
+    ]
+  },
+  {
     id: 'universal-hhn',
     parkName: 'Halloween Horror Nights',
     category: 'universal',
