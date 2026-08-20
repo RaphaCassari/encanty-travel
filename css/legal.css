@@ -174,16 +174,18 @@
 }
 
 .certification-item {
-  width: 240px;
+  width: 140px;
   text-align: center;
 }
 
 .certification-item img {
-  width: 100%;
-  height: auto;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   background: #fff;
+  padding: var(--spacing-xs);
 }
 
 .certification-item figcaption {
