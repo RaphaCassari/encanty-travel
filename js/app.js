@@ -379,6 +379,15 @@ const blogData = [
     date: '11 Ago 2026',
     category: 'Dicas',
     url: 'blog-comidas-volcano-bay.html'
+  },
+  {
+    id: 'b6',
+    title: 'Melhores Comidas do Epic Universe',
+    image: 'images/blog/epic-universe-parque.jpg',
+    excerpt: 'Do Ministério da Magia ao mundo do Mario: o que comer em cada área.',
+    date: '23 Ago 2026',
+    category: 'Dicas',
+    url: 'blog-comidas-epic-universe.html'
   }
 ];
 
