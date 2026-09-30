@@ -42,24 +42,6 @@ const ticketsData = [
     ]
   },
   {
-    id: 'disney-mnsshp',
-    parkName: "Mickey's Not So Scary Halloween Party",
-    category: 'disney',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Magic_Kingdom_Halloween_Oct_2019.jpg/500px-Magic_Kingdom_Halloween_Oct_2019.jpg',
-    description: 'Entre no Magic Kingdom a partir das 16h e aproveite a festa temática de Halloween, com fogos especiais, personagens Disney à noite e muitos doces. Evento recomendado para todas as idades.',
-    price: 151.39,
-    currency: 'USD',
-    priceFrom: true,
-    promo: true,
-    features: [
-      'Acesso ao Magic Kingdom a partir das 16h',
-      'Festa de Halloween das 19h às 23h59',
-      'Fogos de artifício especiais e desfile temático',
-      'Datas selecionadas de agosto a outubro de 2026',
-      'Sujeito à disponibilidade, sem reembolso após a emissão'
-    ]
-  },
-  {
     id: 'disney-mvmcp',
     parkName: "Mickey's Very Merry Christmas Party",
     category: 'disney',
@@ -155,6 +137,24 @@ const ticketsData = [
 // Removidos temporariamente da vitrine (ainda salvos, só não aparecem no site).
 // Para reativar, mova o objeto de volta para dentro de ticketsData.
 const archivedTicketsData = [
+  {
+    id: 'disney-mnsshp',
+    parkName: "Mickey's Not So Scary Halloween Party",
+    category: 'disney',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Magic_Kingdom_Halloween_Oct_2019.jpg/500px-Magic_Kingdom_Halloween_Oct_2019.jpg',
+    description: 'Entre no Magic Kingdom a partir das 16h e aproveite a festa temática de Halloween, com fogos especiais, personagens Disney à noite e muitos doces. Evento recomendado para todas as idades.',
+    price: 151.39,
+    currency: 'USD',
+    priceFrom: true,
+    promo: true,
+    features: [
+      'Acesso ao Magic Kingdom a partir das 16h',
+      'Festa de Halloween das 19h às 23h59',
+      'Fogos de artifício especiais e desfile temático',
+      'Datas selecionadas de agosto a outubro de 2026',
+      'Sujeito à disponibilidade, sem reembolso após a emissão'
+    ]
+  },
   {
     id: 'disney-magic-kingdom',
     parkName: 'Magic Kingdom',
