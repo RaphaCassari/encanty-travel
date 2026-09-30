@@ -118,7 +118,11 @@ const ticketsData = [
     features: [
       'Universal Studios Florida, Islands of Adventure e Epic Universe',
       'Acesso Park-to-Park (troque de parque no mesmo dia)',
-      '3 dias pagos + 2 dias grátis'
+      '3 dias pagos + 2 dias grátis',
+      'Período de vendas: 30 de abril a 16 de dezembro de 2026',
+      'Período de uso: 30 de abril de 2026 a 24 de abril de 2027',
+      'Blackout dates: 9 a 12/out/2026, 18/dez/2026 a 3/jan/2027, 5 a 19/fev/2027 e 20 a 30/mar/2027',
+      'Também disponível com acesso ao Volcano Bay (consulte-nos)'
     ]
   },
   {
