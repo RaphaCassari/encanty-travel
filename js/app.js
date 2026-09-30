@@ -93,7 +93,7 @@ const ticketsData = [
     category: 'universal',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Halloween-Horror-Nights-Orlando-29.jpg/500px-Halloween-Horror-Nights-Orlando-29.jpg',
     description: 'Noites selecionadas de 28 de agosto a 1º de novembro no Universal Studios Florida, com 10 casas mal-assombradas inéditas, scare zones temáticas e shows aterrorizantes. Ingresso separado do acesso regular aos parques. Não recomendado para menores de 13 anos.',
-    price: 93.84,
+    price: 102.85,
     currency: 'USD',
     priceFrom: true,
     promo: true,
