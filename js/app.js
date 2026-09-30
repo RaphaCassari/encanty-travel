@@ -403,9 +403,9 @@ function buildWhatsAppUrl(message) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 }
 
-function openWhatsApp(message) {
+function openWhatsApp(message, method = 'whatsapp') {
   const url = buildWhatsAppUrl(message);
-  trackEvent('generate_lead', { method: 'whatsapp' });
+  trackEvent('generate_lead', { method });
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 
@@ -542,6 +542,13 @@ function formatPrice(price, currency = 'BRL') {
   return price.toLocaleString('pt-BR', { style: 'currency', currency });
 }
 
+function buildTicketWhatsAppMessage(ticket) {
+  return `Olá! Tenho interesse em ingressos para o *${ticket.parkName}*.\n\n` +
+    `📍 Categoria: ${ticket.category.toUpperCase()}\n` +
+    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price, ticket.currency || 'BRL')}${ticket.currency === 'USD' ? ' (sem taxas)' : ''}\n\n` +
+    `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
+}
+
 function generateSrcset(baseUrl) {
   const widths = [300, 600, 900];
   return widths.map(w => `${baseUrl.replace('w=600', `w=${w}`)} ${w}w`).join(', ');
@@ -567,6 +574,9 @@ function renderTicketCard(ticket) {
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
         <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
         <p class="ticket-card-price-note">Valores sem taxas</p>
+        <button class="btn btn-primary ticket-card-cta" data-whatsapp-id="${ticket.id}">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </button>
       </div>
     </article>
   `;
@@ -664,6 +674,16 @@ function renderTickets(filter = 'all') {
   ticketsGrid.querySelectorAll('.ticket-card').forEach(card => {
     card.addEventListener('click', () => openTicketModal(card.dataset.id));
   });
+
+  // Direct WhatsApp CTA on each card, without opening the modal
+  ticketsGrid.querySelectorAll('.ticket-card-cta').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const ticket = ticketsData.find(t => t.id === button.dataset.whatsappId);
+      if (!ticket) return;
+      openWhatsApp(buildTicketWhatsAppMessage(ticket), 'whatsapp_ticket_card');
+    });
+  });
   
   // Refresh AOS
   if (typeof AOS !== 'undefined') AOS.refresh();
@@ -760,11 +780,8 @@ function openTicketModal(ticketId) {
   if (!ticket) return;
   
   const { modalBody } = DOM;
-  const whatsappMessage = `Olá! Tenho interesse em ingressos para o *${ticket.parkName}*.\n\n` +
-    `📍 Categoria: ${ticket.category.toUpperCase()}\n` +
-    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price, ticket.currency || 'BRL')}${ticket.currency === 'USD' ? ' (sem taxas)' : ''}\n\n` +
-    `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
-  
+  const whatsappMessage = buildTicketWhatsAppMessage(ticket);
+
   modalBody.innerHTML = `
     <div class="modal-ticket">
       <img src="${ticket.image}" alt="${ticket.parkName}" class="modal-image" style="width:100%;height:300px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);">
@@ -783,7 +800,7 @@ function openTicketModal(ticketId) {
   `;
   
   modalBody.querySelector('[data-ticket-id]').addEventListener('click', () => {
-    openWhatsApp(whatsappMessage);
+    openWhatsApp(whatsappMessage, 'whatsapp_ticket_modal');
     closeModal();
   });
   
