@@ -14,7 +14,7 @@ const ticketsData = [
     category: 'disney',
     image: 'images/tickets/4-park-magic.jpg',
     description: 'Experimente 4 dias de magia e emoção nos parques temáticos do Walt Disney World: uma visita por dia a cada um dos 4 parques.',
-    price: 430,
+    price: 524.92,
     currency: 'USD',
     priceFrom: true,
     features: [
