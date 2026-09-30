@@ -745,26 +745,26 @@ input, textarea, select {
   gap: var(--spacing-xs);
   width: 100%;
   margin-top: var(--spacing-sm);
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  background: #25D366;
-  color: #fff;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid #25D366;
+  background: transparent;
+  color: #1a9c4f;
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   cursor: pointer;
 }
 
 .ticket-whatsapp-btn i {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .ticket-whatsapp-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  filter: brightness(1.05);
+  background: #25D366;
+  color: #fff;
+  box-shadow: var(--shadow-md);
 }
 
 
