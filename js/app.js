@@ -558,27 +558,29 @@ function renderTicketCard(ticket) {
   const srcset = generateSrcset(ticket.image);
   
   return `
-    <article class="ticket-card card-glow" data-id="${ticket.id}" data-category="${ticket.category}">
-      <img 
-        src="${ticket.image}" 
-        srcset="${srcset}"
-        sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
-        alt="${ticket.parkName}" 
-        class="ticket-card-image" 
-        loading="lazy"
-      >
-      <div class="ticket-card-overlay"></div>
-      ${ticket.promo ? '<span class="ticket-card-promo">Promoção</span>' : ''}
-      <button class="ticket-card-cta" data-whatsapp-id="${ticket.id}" aria-label="Falar no WhatsApp sobre ${ticket.parkName}">
-        <i class="fab fa-whatsapp"></i>
+    <div class="ticket-card-wrapper">
+      <article class="ticket-card card-glow" data-id="${ticket.id}" data-category="${ticket.category}">
+        <img
+          src="${ticket.image}"
+          srcset="${srcset}"
+          sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
+          alt="${ticket.parkName}"
+          class="ticket-card-image"
+          loading="lazy"
+        >
+        <div class="ticket-card-overlay"></div>
+        ${ticket.promo ? '<span class="ticket-card-promo">Promoção</span>' : ''}
+        <div class="ticket-card-content">
+          <span class="ticket-card-category">${ticket.category}</span>
+          <h3 class="ticket-card-title">${ticket.parkName}</h3>
+          <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
+          <p class="ticket-card-price-note">Valores sem taxas</p>
+        </div>
+      </article>
+      <button class="ticket-whatsapp-btn" data-whatsapp-id="${ticket.id}">
+        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
       </button>
-      <div class="ticket-card-content">
-        <span class="ticket-card-category">${ticket.category}</span>
-        <h3 class="ticket-card-title">${ticket.parkName}</h3>
-        <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
-        <p class="ticket-card-price-note">Valores sem taxas</p>
-      </div>
-    </article>
+    </div>
   `;
 }
 
@@ -675,8 +677,8 @@ function renderTickets(filter = 'all') {
     card.addEventListener('click', () => openTicketModal(card.dataset.id));
   });
 
-  // Direct WhatsApp CTA on each card, without opening the modal
-  ticketsGrid.querySelectorAll('.ticket-card-cta').forEach(button => {
+  // Direct WhatsApp CTA below each card, separate from the clickable card area
+  ticketsGrid.querySelectorAll('.ticket-whatsapp-btn').forEach(button => {
     button.addEventListener('click', (event) => {
       event.stopPropagation();
       const ticket = ticketsData.find(t => t.id === button.dataset.whatsappId);

@@ -641,6 +641,11 @@ input, textarea, select {
   gap: var(--spacing-lg);
 }
 
+.ticket-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .ticket-card {
   position: relative;
   border-radius: var(--radius-lg);
@@ -733,27 +738,33 @@ input, textarea, select {
   text-shadow: var(--text-outline);
 }
 
-.ticket-card-cta {
-  position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  z-index: 2;
-  width: 40px;
-  height: 40px;
+.ticket-whatsapp-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-full);
+  gap: var(--spacing-xs);
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
   background: #25D366;
   color: #fff;
-  font-size: 1.15rem;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
+  cursor: pointer;
 }
 
-.ticket-card-cta:hover {
-  transform: scale(1.1);
+.ticket-whatsapp-btn i {
+  font-size: 1.1rem;
+}
+
+.ticket-whatsapp-btn:hover {
+  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+  filter: brightness(1.05);
 }
 
 
