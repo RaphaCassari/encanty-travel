@@ -569,14 +569,14 @@ function renderTicketCard(ticket) {
       >
       <div class="ticket-card-overlay"></div>
       ${ticket.promo ? '<span class="ticket-card-promo">Promoção</span>' : ''}
+      <button class="ticket-card-cta" data-whatsapp-id="${ticket.id}" aria-label="Falar no WhatsApp sobre ${ticket.parkName}">
+        <i class="fab fa-whatsapp"></i>
+      </button>
       <div class="ticket-card-content">
         <span class="ticket-card-category">${ticket.category}</span>
         <h3 class="ticket-card-title">${ticket.parkName}</h3>
         <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
         <p class="ticket-card-price-note">Valores sem taxas</p>
-        <button class="btn btn-primary ticket-card-cta" data-whatsapp-id="${ticket.id}">
-          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-        </button>
       </div>
     </article>
   `;

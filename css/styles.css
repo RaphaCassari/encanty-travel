@@ -734,10 +734,26 @@ input, textarea, select {
 }
 
 .ticket-card-cta {
-  width: 100%;
-  margin-top: var(--spacing-sm);
-  padding: 0.625rem 1rem;
-  font-size: var(--font-size-sm);
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: #25D366;
+  color: #fff;
+  font-size: 1.15rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.ticket-card-cta:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
 }
 
 
