@@ -386,6 +386,15 @@ const blogData = [
     url: 'blog-comidas-volcano-bay.html'
   },
   {
+    id: 'b7',
+    title: "Mickey's Very Merry Christmas Party 2026",
+    image: 'images/blog/natal-disney-hero.jpg',
+    excerpt: 'Datas, o que está incluso e se vale a pena a festa de Natal do Magic Kingdom.',
+    date: '27 Out 2026',
+    category: 'Dicas',
+    url: 'blog-mickeys-christmas-party.html'
+  },
+  {
     id: 'b6',
     title: 'Melhores Comidas do Epic Universe',
     image: 'images/blog/epic-universe-parque.jpg',

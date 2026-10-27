@@ -3,7 +3,7 @@
  * Implements caching strategies for offline functionality
  */
 
-const CACHE_NAME = 'viagens-orlando-v41';
+const CACHE_NAME = 'viagens-orlando-v42';
 const OFFLINE_URL = 'offline.html';
 
 const STATIC_ASSETS = [
