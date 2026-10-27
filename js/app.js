@@ -21,7 +21,8 @@ const ticketsData = [
       'Magic Kingdom, EPCOT, Hollywood Studios e Animal Kingdom (1 dia em cada)',
       'Não permite repetir parque no mesmo ingresso',
       'Válido por 6 dias após a data do primeiro uso',
-      'Estacionamento não incluído'
+      'Estacionamento não incluído',
+      'Valor à vista no Pix, com desconto'
     ]
   },
   {
