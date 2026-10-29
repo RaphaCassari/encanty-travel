@@ -102,6 +102,7 @@
       <ul class="nav-menu" id="nav-menu" role="menubar">
         <li role="none"><a href="#home" class="nav-link" role="menuitem">Início</a></li>
         <li role="none"><a href="#tickets" class="nav-link" role="menuitem">Ingressos</a></li>
+        <li role="none"><a href="#packages" class="nav-link" role="menuitem">Pacotes</a></li>
         <li role="none"><a href="#hotels" class="nav-link" role="menuitem">Hospedagem</a></li>
         <li role="none"><a href="#cars" class="nav-link" role="menuitem">Aluguel de Carros</a></li>
         <li role="none"><a href="#blog" class="nav-link" role="menuitem">Blog</a></li>
@@ -176,6 +177,20 @@
         </div>
         
         <div class="tickets-grid" id="tickets-grid" role="tabpanel">
+          <!-- Cards serão renderizados via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="section packages-section" id="packages" aria-label="Pacotes">
+      <div class="container">
+        <header class="section-header" data-aos="fade-up">
+          <h2 class="section-title">Pacotes</h2>
+          <p class="section-subtitle">Hotel e ingressos juntos, com condições especiais</p>
+        </header>
+
+        <div class="tickets-grid" id="packages-grid">
           <!-- Cards serão renderizados via JavaScript -->
         </div>
       </div>
@@ -340,6 +355,7 @@
           <h4 class="footer-title">Links Rápidos</h4>
           <ul>
             <li><a href="#tickets">Ingressos</a></li>
+            <li><a href="#packages">Pacotes</a></li>
             <li><a href="#hotels">Hospedagem</a></li>
             <li><a href="#cars">Aluguel de Carros</a></li>
             <li><a href="#blog">Blog</a></li>
@@ -427,7 +443,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   
   <!-- Custom Scripts -->
-  <script src="js/app.js?v=42"></script>
+  <script src="js/app.js?v=43"></script>
   
   <!-- Service Worker Registration -->
   <script>

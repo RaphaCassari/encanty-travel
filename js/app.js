@@ -304,6 +304,29 @@ const hotelsData = [
   }
 ];
 
+const packagesData = [
+  {
+    id: 'pacote-all-star-sports-jul-2027',
+    name: "Disney's All-Star Sports Resort",
+    title: 'Hotel + Ingressos',
+    image: 'images/packages/all-star-sports-resort.jpg',
+    price: 2578.05,
+    currency: 'USD',
+    priceFrom: true,
+    priceNote: 'Por pessoa, base 2 adultos',
+    description: 'Hospedagem no Disney\'s All-Star Sports Resort com ingressos de 4 dias para os parques Disney.',
+    features: [
+      "Disney's All-Star Sports Resort, quarto Preferred Room",
+      'Check-in de 1º a 8 de julho de 2027',
+      'Ingresso de 4 dias com 1 parque por dia',
+      'Ingressos válidos por 7 dias consecutivos a partir de 1º de julho de 2027',
+      'Oferta para estadias de 4 a 14 noites',
+      'Reservas de 10 de setembro de 2026 a 1º de fevereiro de 2027',
+      'Também disponível com plano de refeições Quick-Service (consulte-nos)'
+    ]
+  }
+];
+
 
 const testimonialsData = [
   {
@@ -440,6 +463,7 @@ const DOM = {
   navMenu: document.getElementById('nav-menu'),
   ticketsGrid: document.getElementById('tickets-grid'),
   hotelsWrapper: document.getElementById('hotels-wrapper'),
+  packagesGrid: document.getElementById('packages-grid'),
   testimonialsWrapper: document.getElementById('testimonials-wrapper'),
   blogGrid: document.getElementById('blog-grid'),
   modal: document.getElementById('modal'),
@@ -564,6 +588,14 @@ function buildTicketWhatsAppMessage(ticket) {
     `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
 }
 
+function buildPackageWhatsAppMessage(pkg) {
+  return `Olá! Tenho interesse no pacote *${pkg.title}* no *${pkg.name}*.\n\n` +
+    `💰 Valor: ${pkg.priceFrom ? 'a partir de ' : ''}${formatPrice(pkg.price, pkg.currency || 'BRL')} (${pkg.priceNote.toLowerCase()})\n` +
+    `📅 Check-in de 1º a 8 de julho de 2027\n` +
+    `🎟️ Ingresso de 4 dias com 1 parque por dia\n\n` +
+    `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
+}
+
 function generateSrcset(baseUrl) {
   const widths = [300, 600, 900];
   return widths.map(w => `${baseUrl.replace('w=600', `w=${w}`)} ${w}w`).join(', ');
@@ -593,6 +625,32 @@ function renderTicketCard(ticket) {
         </div>
       </article>
       <button class="ticket-whatsapp-btn" data-whatsapp-id="${ticket.id}">
+        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+      </button>
+    </div>
+  `;
+}
+
+function renderPackageCard(pkg) {
+  return `
+    <div class="ticket-card-wrapper">
+      <article class="ticket-card card-glow" data-id="${pkg.id}">
+        <img
+          src="${pkg.image}"
+          alt="${pkg.name}"
+          class="ticket-card-image"
+          loading="lazy"
+        >
+        <div class="ticket-card-overlay"></div>
+        <span class="ticket-card-promo">Oferta especial</span>
+        <div class="ticket-card-content">
+          <span class="ticket-card-category">${pkg.title}</span>
+          <h3 class="ticket-card-title">${pkg.name}</h3>
+          <p class="ticket-card-price"><span>${pkg.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(pkg.price, pkg.currency || 'BRL')}</p>
+          <p class="ticket-card-price-note">${pkg.priceNote}</p>
+        </div>
+      </article>
+      <button class="ticket-whatsapp-btn" data-whatsapp-id="${pkg.id}">
         <i class="fab fa-whatsapp"></i> Falar no WhatsApp
       </button>
     </div>
@@ -704,6 +762,26 @@ function renderTickets(filter = 'all') {
   
   // Refresh AOS
   if (typeof AOS !== 'undefined') AOS.refresh();
+}
+
+function renderPackages() {
+  const { packagesGrid } = DOM;
+  if (!packagesGrid) return;
+
+  packagesGrid.innerHTML = packagesData.map(renderPackageCard).join('');
+
+  packagesGrid.querySelectorAll('.ticket-card').forEach(card => {
+    card.addEventListener('click', () => openPackageModal(card.dataset.id));
+  });
+
+  packagesGrid.querySelectorAll('.ticket-whatsapp-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const pkg = packagesData.find(p => p.id === button.dataset.whatsappId);
+      if (!pkg) return;
+      openWhatsApp(buildPackageWhatsAppMessage(pkg), 'whatsapp_package_card');
+    });
+  });
 }
 
 function renderHotels() {
@@ -821,6 +899,39 @@ function openTicketModal(ticketId) {
     closeModal();
   });
   
+  openModal();
+}
+
+function openPackageModal(packageId) {
+  const pkg = packagesData.find(p => p.id === packageId);
+  if (!pkg) return;
+
+  const { modalBody } = DOM;
+  const whatsappMessage = buildPackageWhatsAppMessage(pkg);
+
+  modalBody.innerHTML = `
+    <div class="modal-ticket">
+      <img src="${pkg.image}" alt="${pkg.name}" class="modal-image" style="width:100%;height:300px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);">
+      <span class="ticket-card-category" style="margin-bottom:var(--spacing-sm);display:inline-block;">${pkg.title}</span>
+      <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-sm);">${pkg.name}</h2>
+      <p style="color:var(--color-text-light);margin-bottom:var(--spacing-md);">${pkg.description}</p>
+      <ul style="margin-bottom:var(--spacing-lg);">
+        ${pkg.features.map(f => `<li style="padding:var(--spacing-xs) 0;"><i class="fas fa-check" style="color:var(--color-success);margin-right:var(--spacing-sm);"></i>${f}</li>`).join('')}
+      </ul>
+      <p style="color:var(--color-text-muted);font-size:var(--font-size-sm);margin-bottom:var(--spacing-md);">Valores, disponibilidade e condições podem mudar sem aviso prévio e são confirmados no atendimento.</p>
+      <div style="display:flex;justify-content:flex-end;align-items:center;">
+        <button class="btn btn-primary" data-package-id="${pkg.id}">
+          <i class="fab fa-whatsapp"></i> Solicitar Pacote
+        </button>
+      </div>
+    </div>
+  `;
+
+  modalBody.querySelector('[data-package-id]').addEventListener('click', () => {
+    openWhatsApp(whatsappMessage, 'whatsapp_package_modal');
+    closeModal();
+  });
+
   openModal();
 }
 
@@ -1111,6 +1222,7 @@ function initExchangeRate() {
 function init() {
   // Render content
   renderTickets();
+  renderPackages();
   renderHotels();
   renderTestimonials();
   renderBlog();
