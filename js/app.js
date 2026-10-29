@@ -389,7 +389,7 @@ const blogData = [
   {
     id: 'b7',
     title: "Mickey's Very Merry Christmas Party 2026",
-    image: 'images/blog/natal-disney-hero.jpg',
+    image: 'images/blog/natal-main-street-hero.jpg',
     excerpt: 'Datas, o que está incluso e se vale a pena a festa de Natal do Magic Kingdom.',
     date: '27 Out 2026',
     category: 'Dicas',
