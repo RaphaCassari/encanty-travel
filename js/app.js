@@ -4,7 +4,7 @@
  */
 
 // ========================================
-// Data - Mock data for tickets, hotels, testimonials, blog
+// Data for tickets, hotels, packages, blog
 // ========================================
 
 const ticketsData = [
@@ -328,41 +328,6 @@ const packagesData = [
 ];
 
 
-const testimonialsData = [
-  {
-    id: 't1',
-    name: 'Maria Silva',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-    rating: 5,
-    text: 'Viagem dos sonhos! A equipe cuidou de tudo, desde os ingressos até as reservas. Super recomendo!',
-    date: 'Julho 2026'
-  },
-  {
-    id: 't2',
-    name: 'João Santos',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-    rating: 5,
-    text: 'Atendimento excepcional! Conseguiram os melhores preços e o suporte durante a viagem foi incrível.',
-    date: 'Junho 2026'
-  },
-  {
-    id: 't3',
-    name: 'Ana Oliveira',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
-    rating: 5,
-    text: 'Segunda vez que viajo com eles e não me arrependo. Tudo organizado e sem stress!',
-    date: 'Maio 2026'
-  },
-  {
-    id: 't4',
-    name: 'Carlos Mendes',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
-    rating: 4,
-    text: 'Ótima experiência! O parcelamento facilitou muito. Voltarei a fazer negócio com certeza.',
-    date: 'Abril 2026'
-  }
-];
-
 const blogData = [
   {
     id: 'b1',
@@ -464,7 +429,6 @@ const DOM = {
   ticketsGrid: document.getElementById('tickets-grid'),
   hotelsWrapper: document.getElementById('hotels-wrapper'),
   packagesGrid: document.getElementById('packages-grid'),
-  testimonialsWrapper: document.getElementById('testimonials-wrapper'),
   blogGrid: document.getElementById('blog-grid'),
   modal: document.getElementById('modal'),
   modalBody: document.getElementById('modal-body'),
@@ -533,13 +497,18 @@ function initHeroAnimations() {
   if (typeof gsap !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     
-    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const heroTimeline = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      onComplete: () => gsap.set('.hero-cta', { clearProps: 'opacity' })
+    });
     
     heroTimeline
       .from('.hero-bg', { scale: 1.2, duration: 1.5 })
       .from('.hero-title', { y: 100, opacity: 0, duration: 1 }, '-=1')
       .from('.hero-subtitle', { y: 50, opacity: 0, duration: 0.8 }, '-=0.5')
-      .from('.hero-cta', { scale: 0, opacity: 0, duration: 0.5 }, '-=0.3');
+      // Fade only: the CTA's CSS pulse animation also drives transform, and a
+      // GSAP scale tween on top of it left the button stuck at opacity 0
+      .fromTo('.hero-cta', { opacity: 0 }, { opacity: 1, duration: 0.5, clearProps: 'opacity' }, '-=0.3');
     
     // Parallax effect on hero background
     gsap.to('.hero-bg', {
@@ -682,29 +651,6 @@ function renderHotelCard(hotel) {
 }
 
 
-function renderTestimonialCard(testimonial) {
-  const stars = '★'.repeat(testimonial.rating) + '☆'.repeat(5 - testimonial.rating);
-  const photoSrcset = testimonial.photo.replace('w=150', 'w=80') + ' 80w, ' +
-                      testimonial.photo + ' 150w';
-  
-  return `
-    <div class="swiper-slide">
-      <article class="testimonial-card">
-        <img 
-          src="${testimonial.photo}" 
-          srcset="${photoSrcset}"
-          sizes="80px"
-          alt="${testimonial.name}" 
-          class="testimonial-photo" 
-          loading="lazy"
-        >
-        <h3 class="testimonial-name">${testimonial.name}</h3>
-        <div class="testimonial-rating" aria-label="Avaliação: ${testimonial.rating} de 5 estrelas">${stars}</div>
-        <p class="testimonial-text">"${testimonial.text}"</p>
-      </article>
-    </div>
-  `;
-}
 
 function renderBlogCard(post) {
   const srcset = generateSrcset(post.image);
@@ -797,12 +743,6 @@ function renderHotels() {
   });
 }
 
-function renderTestimonials() {
-  const { testimonialsWrapper } = DOM;
-  if (!testimonialsWrapper) return;
-  
-  testimonialsWrapper.innerHTML = testimonialsData.map(renderTestimonialCard).join('');
-}
 
 const PT_MONTHS = { jan: 0, fev: 1, mar: 2, abr: 3, mai: 4, jun: 5, jul: 6, ago: 7, set: 8, out: 9, nov: 10, dez: 11 };
 
@@ -1034,36 +974,6 @@ function initSwipers() {
       992: { slidesPerView: 3 }
     }
   });
-  
-  // Testimonials Swiper with coverflow effect
-  window.testimonialsSwiper = new Swiper('.testimonials-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    centeredSlides: true,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: true,
-      pauseOnMouseEnter: true
-    },
-    effect: 'coverflow',
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 100,
-      modifier: 2,
-      slideShadows: false
-    },
-    pagination: {
-      el: '.testimonials-swiper .swiper-pagination',
-      clickable: true,
-      dynamicBullets: true
-    },
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
-  });
 }
 
 // ========================================
@@ -1224,7 +1134,6 @@ function init() {
   renderTickets();
   renderPackages();
   renderHotels();
-  renderTestimonials();
   renderBlog();
   
   // Initialize features

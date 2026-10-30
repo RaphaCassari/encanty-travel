@@ -379,8 +379,7 @@ a {
 .ticket-card,
 .hotel-card,
 .blog-card,
-.contact-card,
-.testimonial-card {
+.contact-card {
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
