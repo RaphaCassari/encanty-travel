@@ -304,6 +304,55 @@ const hotelsData = [
   }
 ];
 
+const CALIFORNIA_RESERVATION_NOTICE =
+  'Para entrar no parque é necessário fazer a reserva em ' +
+  '<a href="https://startyourdisneylandexperience.com" target="_blank" rel="noopener noreferrer">StartYourDisneylandExperience.com</a>. ' +
+  'Sem reserva confirmada não é possível entrar. Confira a lotação da data no ' +
+  '<a href="https://disneyland.disney.go.com/availability-calendar/?segments=ticket,ph&defaultSegment=ticket" target="_blank" rel="noopener noreferrer">calendário de disponibilidade da Disney</a>.';
+
+const californiaTicketsData = [
+  {
+    id: 'disneyland-1-day-1-park',
+    parkName: 'Disneyland Resort: 1 Dia, 1 Parque',
+    category: 'california',
+    image: 'images/tickets/disneyland-roda-mickey.jpg',
+    description: 'Ingresso de 1 dia para a Disneyland Resort, na Califórnia: entrada em um parque por dia, Disneyland Park ou Disney California Adventure.',
+    price: 257.56,
+    currency: 'USD',
+    priceFrom: true,
+    priceNote: 'Varia por data · reserva obrigatória',
+    askDate: true,
+    notice: CALIFORNIA_RESERVATION_NOTICE,
+    features: [
+      'Entrada em 1 parque por dia: Disneyland Park ou Disney California Adventure',
+      'Valor a partir de: o preço muda conforme a data escolhida',
+      'Reserva do parque obrigatória para a data da visita',
+      'Confira a lotação da data antes de comprar'
+    ]
+  },
+  {
+    id: 'disneyland-1-day-park-hopper',
+    parkName: 'Disneyland Resort: 1 Dia Park Hopper',
+    category: 'california',
+    image: 'images/tickets/disneyland-roda-mickey-park-hopper.jpg',
+    description: 'Ingresso de 1 dia com Park Hopper para a Disneyland Resort, na Califórnia: os dois parques no mesmo dia.',
+    price: 363.94,
+    currency: 'USD',
+    priceFrom: true,
+    priceNote: 'Varia por data · reserva obrigatória',
+    askDate: true,
+    notice: CALIFORNIA_RESERVATION_NOTICE,
+    features: [
+      'Disneyland Park e Disney California Adventure no mesmo dia',
+      'Na reserva você escolhe o parque inicial; a entrada no segundo depende da lotação dele',
+      'Valor a partir de: o preço muda conforme a data escolhida',
+      'Reserva do parque obrigatória para a data da visita'
+    ]
+  }
+];
+
+ticketsData.push(...californiaTicketsData);
+
 const packagesData = [
   {
     id: 'pacote-all-star-sports-jul-2027',
@@ -550,10 +599,17 @@ function formatPrice(price, currency = 'BRL') {
   return price.toLocaleString('pt-BR', { style: 'currency', currency });
 }
 
+const CATEGORY_LABELS = { california: 'Califórnia' };
+
+function categoryLabel(category) {
+  return CATEGORY_LABELS[category] || category;
+}
+
 function buildTicketWhatsAppMessage(ticket) {
   return `Olá! Tenho interesse em ingressos para o *${ticket.parkName}*.\n\n` +
-    `📍 Categoria: ${ticket.category.toUpperCase()}\n` +
-    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${formatPrice(ticket.price, ticket.currency || 'BRL')}${ticket.currency === 'USD' ? ' (sem taxas)' : ''}\n\n` +
+    `📍 Categoria: ${categoryLabel(ticket.category).toUpperCase()}\n` +
+    `💰 Preço: ${ticket.priceFrom ? 'a partir de ' : ''}${ticket.priceLabel ? ticket.priceLabel + ' ' : ''}${formatPrice(ticket.price, ticket.currency || 'BRL')}${ticket.currency === 'USD' && !ticket.askDate ? ' (sem taxas)' : ''}\n` +
+    (ticket.askDate ? `📅 Data prevista da visita: (informe aqui)\n` : '') + `\n` +
     `Gostaria de mais informações sobre disponibilidade e formas de pagamento.`;
 }
 
@@ -587,10 +643,10 @@ function renderTicketCard(ticket) {
         <div class="ticket-card-overlay"></div>
         ${ticket.promo ? '<span class="ticket-card-promo">Promoção</span>' : ''}
         <div class="ticket-card-content">
-          <span class="ticket-card-category">${ticket.category}</span>
+          <span class="ticket-card-category">${categoryLabel(ticket.category)}</span>
           <h3 class="ticket-card-title">${ticket.parkName}</h3>
-          <p class="ticket-card-price"><span>${ticket.priceFrom ? 'a partir de' : ''}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
-          <p class="ticket-card-price-note">Valores sem taxas</p>
+          <p class="ticket-card-price"><span>${ticket.priceLabel || (ticket.priceFrom ? 'a partir de' : '')}</span> ${formatPrice(ticket.price, ticket.currency || 'BRL')}</p>
+          <p class="ticket-card-price-note">${ticket.priceNote || 'Valores sem taxas'}</p>
         </div>
       </article>
       <button class="ticket-whatsapp-btn" data-whatsapp-id="${ticket.id}">
@@ -820,12 +876,13 @@ function openTicketModal(ticketId) {
   modalBody.innerHTML = `
     <div class="modal-ticket">
       <img src="${ticket.image}" alt="${ticket.parkName}" class="modal-image" style="width:100%;height:300px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);">
-      <span class="ticket-card-category" style="margin-bottom:var(--spacing-sm);display:inline-block;">${ticket.category}</span>
+      <span class="ticket-card-category" style="margin-bottom:var(--spacing-sm);display:inline-block;">${categoryLabel(ticket.category)}</span>
       <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-sm);">${ticket.parkName}</h2>
       <p style="color:var(--color-text-light);margin-bottom:var(--spacing-md);">${ticket.description}</p>
       <ul style="margin-bottom:var(--spacing-lg);">
         ${ticket.features.map(f => `<li style="padding:var(--spacing-xs) 0;"><i class="fas fa-check" style="color:var(--color-success);margin-right:var(--spacing-sm);"></i>${f}</li>`).join('')}
       </ul>
+      ${ticket.notice ? `<p style="background:var(--color-background-alt, #fff7e8);border-left:4px solid var(--color-secondary);padding:var(--spacing-sm) var(--spacing-md);border-radius:var(--radius-sm);margin-bottom:var(--spacing-lg);font-size:var(--font-size-sm);">${ticket.notice}</p>` : ''}
       <div style="display:flex;justify-content:flex-end;align-items:center;">
         <button class="btn btn-primary" data-ticket-id="${ticket.id}">
           <i class="fab fa-whatsapp"></i> Comprar Agora
