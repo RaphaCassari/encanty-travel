@@ -424,6 +424,15 @@ const blogData = [
     url: 'blog-comidas-volcano-bay.html'
   },
   {
+    id: 'b8',
+    title: 'Disneyland Califórnia: Como Funciona o Ingresso e a Reserva',
+    image: 'images/blog/disneyland-roda-mickey-hero.jpg',
+    excerpt: 'Reserva obrigatória do parque, Park Hopper e como conferir a lotação da data.',
+    date: '3 Nov 2026',
+    category: 'Dicas',
+    url: 'blog-disneyland-california-como-funciona.html'
+  },
+  {
     id: 'b7',
     title: "Mickey's Very Merry Christmas Party 2026",
     image: 'images/blog/natal-main-street-hero.jpg',
