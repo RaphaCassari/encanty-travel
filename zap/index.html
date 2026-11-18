@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="icon" type="image/png" href="../assets/icons/icon.png">
+  <title>Fale no WhatsApp - Encanty Travel</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9PYN45CP30"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9PYN45CP30');
+  </script>
+
+  <style>
+    :root { --navy: #1e3a5f; --gold: #e8c46e; --green: #25d366; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--navy); color: #fff; font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+      text-align: center; padding: 24px;
+    }
+    main { max-width: 420px; }
+    img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; }
+    h1 { font-size: 1.4rem; margin: 0 0 8px; }
+    p { margin: 0 0 24px; opacity: .9; }
+    a.btn {
+      display: inline-block; background: var(--green); color: #fff; text-decoration: none;
+      font-weight: 700; padding: 14px 28px; border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="../assets/icons/icon.png" alt="Encanty Travel">
+    <h1>Abrindo o WhatsApp...</h1>
+    <p>Se não abrir sozinho, toque no botão abaixo.</p>
+    <a class="btn" id="zap-link" href="https://wa.me/5511983688641">Falar no WhatsApp</a>
+  </main>
+
+  <script>
+    (function () {
+      var NUMBER = '5511983688641';
+      // ?svc=ingressos|hotel|carro|seguro|visto|passeios muda a mensagem pronta
+      var MESSAGES = {
+        ingressos: 'Olá! Vim pelo Instagram e quero saber sobre ingressos para os parques.',
+        hotel: 'Olá! Vim pelo Instagram e quero saber sobre hospedagem.',
+        carro: 'Olá! Vim pelo Instagram e quero saber sobre aluguel de carro.',
+        seguro: 'Olá! Vim pelo Instagram e quero saber sobre seguro viagem.',
+        visto: 'Olá! Vim pelo Instagram e quero ajuda com o visto americano.',
+        passeios: 'Olá! Vim pelo Instagram e quero saber sobre passeios.'
+      };
+      var DEFAULT_MESSAGE = 'Olá! Vim pelo Instagram e gostaria de planejar minha viagem.';
+
+      var params = new URLSearchParams(window.location.search);
+      var svc = (params.get('svc') || '').toLowerCase();
+      var message = MESSAGES[svc] || DEFAULT_MESSAGE;
+      var url = 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(message);
+
+      document.getElementById('zap-link').href = url;
+      if (params.has('nogo')) return;   // modo de teste: não redireciona
+
+      var done = false;
+      function go() {
+        if (done) return;
+        done = true;
+        window.location.replace(url);
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          method: 'whatsapp_bio' + (svc && MESSAGES[svc] ? '_' + svc : ''),
+          event_callback: go
+        });
+      }
+      setTimeout(go, 700);              // garante o redirecionamento mesmo sem o Analytics
+    })();
+  </script>
+</body>
+</html>
