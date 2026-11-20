@@ -1147,6 +1147,18 @@ function initCarQuote() {
   });
 }
 
+function initServiceCards() {
+  document.querySelectorAll('.service-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.service || 'servico';
+      const name = btn.dataset.serviceName || 'os serviços da Encanty Travel';
+      const message = `Olá! Vim pelo site da Encanty Travel e gostaria de saber mais sobre *${name}*.\n\n` +
+        `Pode me enviar mais informações e um orçamento?`;
+      openWhatsApp(message, `whatsapp_service_${key}`);
+    });
+  });
+}
+
 function initAnalyticsTracking() {
   document.querySelector('.whatsapp-float')?.addEventListener('click', () => {
     trackEvent('generate_lead', { method: 'whatsapp_float' });
@@ -1214,6 +1226,7 @@ function init() {
   initAOS();
   initScrollAnimations();
   initCarQuote();
+  initServiceCards();
 
   const footerYear = document.getElementById('footer-year');
   if (footerYear) footerYear.textContent = new Date().getFullYear();
