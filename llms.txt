@@ -12,6 +12,8 @@
 ## Páginas principais
 - [Início](https://encantytravel.com.br/)
 - [Sobre a Raquel e a Encanty](https://encantytravel.com.br/sobre.html)
+- [Guiamento virtual por videochamada](https://encantytravel.com.br/guiamento-virtual.html)
+- [Como escolher uma agência para Orlando: 9 perguntas](https://encantytravel.com.br/blog-como-escolher-agencia-orlando.html)
 - [Perguntas frequentes](https://encantytravel.com.br/faq.html)
 - [Blog com guias](https://encantytravel.com.br/blog.html)
 - [Disneyland Califórnia: como funciona a reserva](https://encantytravel.com.br/blog-disneyland-california-como-funciona.html)
@@ -23,3 +25,7 @@
 - Instagram: https://www.instagram.com/encantytravel/
 - YouTube: https://www.youtube.com/@encantytravel
 - TikTok: https://www.tiktok.com/@encanty.travel
+
+## Dados da empresa
+- CNPJ 35.694.501/0001-08 (35.694.501 Raquel Maria de Souza Cassari), São Paulo, SP, atendimento online para todo o Brasil.
+- Facebook: https://www.facebook.com/profile.php?id=61596527144478
