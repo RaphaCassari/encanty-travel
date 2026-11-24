@@ -48,23 +48,27 @@
       var NUMBER = '5511983688641';
       // ?svc=ingressos|hotel|carro|seguro|visto|passeios|guiamento|california|cruzeiro|paris|japao muda a mensagem pronta
       var MESSAGES = {
-        ingressos: 'Olá! Vim pelo Instagram e quero saber sobre ingressos para os parques.',
-        hotel: 'Olá! Vim pelo Instagram e quero saber sobre hospedagem.',
-        carro: 'Olá! Vim pelo Instagram e quero saber sobre aluguel de carro.',
-        seguro: 'Olá! Vim pelo Instagram e quero saber sobre seguro viagem.',
-        visto: 'Olá! Vim pelo Instagram e quero ajuda com o visto americano.',
-        passeios: 'Olá! Vim pelo Instagram e quero saber sobre passeios.',
-        guiamento: 'Olá! Vim pelo Instagram e quero saber sobre o guiamento virtual.',
-        california: 'Olá! Vim pelo Instagram e quero saber sobre uma viagem para a Califórnia.',
-        cruzeiro: 'Olá! Vim pelo Instagram e quero saber sobre cruzeiros Disney.',
-        paris: 'Olá! Vim pelo Instagram e quero saber sobre uma viagem para Paris e Europa.',
-        japao: 'Olá! Vim pelo Instagram e quero saber sobre uma viagem para o Japão.'
+        ingressos: 'Olá! Vim pelo {src} e quero saber sobre ingressos para os parques.',
+        hotel: 'Olá! Vim pelo {src} e quero saber sobre hospedagem.',
+        carro: 'Olá! Vim pelo {src} e quero saber sobre aluguel de carro.',
+        seguro: 'Olá! Vim pelo {src} e quero saber sobre seguro viagem.',
+        visto: 'Olá! Vim pelo {src} e quero ajuda com o visto americano.',
+        passeios: 'Olá! Vim pelo {src} e quero saber sobre passeios.',
+        guiamento: 'Olá! Vim pelo {src} e quero saber sobre o guiamento virtual.',
+        california: 'Olá! Vim pelo {src} e quero saber sobre uma viagem para a Califórnia.',
+        cruzeiro: 'Olá! Vim pelo {src} e quero saber sobre cruzeiros Disney.',
+        paris: 'Olá! Vim pelo {src} e quero saber sobre uma viagem para Paris e Europa.',
+        japao: 'Olá! Vim pelo {src} e quero saber sobre uma viagem para o Japão.'
       };
-      var DEFAULT_MESSAGE = 'Olá! Vim pelo Instagram e gostaria de planejar minha viagem.';
+      var DEFAULT_MESSAGE = 'Olá! Vim pelo {src} e gostaria de planejar minha viagem.';
 
       var params = new URLSearchParams(window.location.search);
       var svc = (params.get('svc') || '').toLowerCase();
-      var message = MESSAGES[svc] || DEFAULT_MESSAGE;
+      // ?src=youtube|tiktok|facebook muda "Vim pelo ..." e o rótulo no Analytics (sem src = Instagram)
+      var SOURCES = { instagram: 'Instagram', youtube: 'YouTube', tiktok: 'TikTok', facebook: 'Facebook' };
+      var src = (params.get('src') || 'instagram').toLowerCase();
+      if (!SOURCES[src]) src = 'instagram';
+      var message = (MESSAGES[svc] || DEFAULT_MESSAGE).replace('{src}', SOURCES[src]);
       var url = 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(message);
 
       document.getElementById('zap-link').href = url;
@@ -78,7 +82,7 @@
       }
       if (typeof gtag === 'function') {
         gtag('event', 'generate_lead', {
-          method: 'whatsapp_bio' + (svc && MESSAGES[svc] ? '_' + svc : ''),
+          method: (src === 'instagram' ? 'whatsapp_bio' : 'whatsapp_' + src) + (svc && MESSAGES[svc] ? '_' + svc : ''),
           event_callback: go
         });
       }
